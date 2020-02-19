@@ -2,25 +2,28 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import DogImage from './DogImage';
 
-const Section = () => {
+const Section = ({children}) => {
     return (
-        <View>
-            <Text>cc
-            </Text>
-            <DogImage imageSource={dogData.corgi + dogData.link} />
+        <View styles={styles.container}>
+            <DogImage imageSource={dogData.corgi} />
+            <DogImage imageSource={dogData.pug} />
         </View>
     );
 };
 
+
+
 const dogData = {
     corgi: 'corgi',
-    shiba: 'shiba-inu',
-    link: 'https://source.unsplash.com/random/?'
+    pug: 'pug',
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        height: 100,
+        justifyContent: 'space-between',
+        alignContent: 'space-between',
+        backgroundColor: 'red',
     }
 });
 

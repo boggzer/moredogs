@@ -1,42 +1,38 @@
-import React from 'react';
-import { SafeAreaView, StyleSheet, StatusBar, View } from 'react-native';
+import 'react-native-gesture-handler';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+import { StyleSheet, StatusBar, View } from 'react-native';
 import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
 
-
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: 'yellow',
-  },
   body: {
-    backgroundColor: 'white',
-    flex: 1,
-  },
-  header: {
-    flex: 2,
-    backgroundColor: 'blue',
-  },
-  container: {
-    flex: 9,
-  },
-  footer: {
+    backgroundColor: 'rgb( 255, 188, 181 )',
     flex: 1,
   },
 });
 
-function App() {
+const HomeScreen = () => {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView style={styles.body}>
+    <View></View>
+  );
+}
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <StatusBar hidden='true' />
+      <SafeAreaProvider style={styles.body}>
         <Header />
-        <Main style={styles.header}/>
+        <Main />
         <Footer />
-      </SafeAreaView>
-    </>
+      </SafeAreaProvider>
+    </NavigationContainer>
   );
 };
-
 
 export default App;

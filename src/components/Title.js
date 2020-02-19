@@ -3,15 +3,17 @@ import { View, Text, StyleSheet } from 'react-native';
 
 const Title = () => {
     return (
-        <View style={styles.container}>
-            <Text>Titel</Text>
-        </View>
+        <Text style={styles.textStyle}>More dogs please!</Text>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-
+    textStyle: {
+        fontSize: 40,
+        textTransform: 'lowercase',
+        fontFamily: 'Avenir-Black',
+        color: '#A63D40',
+        letterSpacing: -3,
     }
 })
 

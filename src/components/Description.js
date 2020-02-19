@@ -2,13 +2,17 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 const Description = () => {
-    return(
-        <View>
-            <Text>
-                Description
-            </Text>
-        </View>
+    return (
+        <Text style={styles.textStyle}>
+            A randomized dog image generator.
+        </Text>
     );
 }
+
+const styles = StyleSheet.create({
+    textStyle: {
+        fontStyle: 'italic',
+    }
+})
 
 export default Description;

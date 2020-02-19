@@ -1,30 +1,38 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, ImageBackground } from 'react-native';
 
 class DogImage extends Component {
-    constructor({...props}) {
-        super({props});
-
-        // const imageSource = this.props;
+    constructor(props) {
+        super(props);
     }
 
     render() {
         return (
-            <>
-                <Text>Hola</Text>
-                <Image source={{ uri: this.imageSource }}></Image>
-            </>
+            <ImageBackground
+                source={{ uri: 'https://source.unsplash.com/random/?' + JSON.stringify(this.props.dogBreed) }}
+                style={styles.ImageBackground}>
+                <View style={[styles.container, styles.overlay]}>
+                    {this.props.children}
+                </View>
+            </ImageBackground>
         )
     }
 }
-/*
-const DogImage = ({children, props}) => {
-    return (
-        <View>
-            <Image source={{uri:'https://source.unsplash.com/random/?' + props}} style={{width: 100, height: 100}}></Image>
-    <Text>{props} {children} Hello</Text>
-        </View>
-    );
-}*/
+
+const styles = StyleSheet.create({
+    ImageBackground: {
+        flex: 1,
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        resizeMode: 'cover',
+    },
+    overlay: {
+        flex: 1,
+        backgroundColor: 'rgba( 255, 188, 181, 0.4 )',
+    }
+})
 
 export default DogImage;

@@ -15,8 +15,10 @@ const Header = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 2,
+        height: '10%',
         justifyContent: 'space-evenly',
-        backgroundColor: 'yellow'
+        alignItems: 'center',
+        backgroundColor: '#FFBCB5',
     }
 })
 

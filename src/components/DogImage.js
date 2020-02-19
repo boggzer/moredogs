@@ -1,20 +1,32 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, ImageBackground } from 'react-native';
+import Colors from '../constants/colors';
 
 class DogImage extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            imageLink: this.getURI,
+        }
     }
 
     render() {
         return (
             <ImageBackground
-                source={{ uri: 'https://source.unsplash.com/random/?' + JSON.stringify(this.props.dogBreed) }}
+                source={ this.state.imageLink }
                 style={styles.ImageBackground}>
-                <View style={[styles.container, styles.overlay]}>
-                    {this.props.children}
+                <View style={[styles.container, this.props.overlay == false ? !styles.overlay : styles.overlay] }>
+                    { this.props.children }
                 </View>
             </ImageBackground>
+        )
+    }
+
+    get getURI() {
+        return (
+            { uri: 'https://source.unsplash.com/random/?' + JSON.stringify(this.props.dogBreed) }
+            
         )
     }
 }
@@ -31,8 +43,8 @@ const styles = StyleSheet.create({
     },
     overlay: {
         flex: 1,
-        backgroundColor: 'rgba( 255, 188, 181, 0.4 )',
+        backgroundColor: `${Colors.MELON}70`,
     }
 })
-
+// 'rgba( 255, 188, 181, 0.4 )'
 export default DogImage;

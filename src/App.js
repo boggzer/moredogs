@@ -1,12 +1,12 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { StyleSheet, StatusBar, View } from 'react-native';
+import { StyleSheet, StatusBar } from 'react-native';
+
+import Main from './components/Main'
 import Header from './components/Header';
-import Main from './components/Main';
 import Footer from './components/Footer';
 
 const styles = StyleSheet.create({
@@ -16,22 +16,17 @@ const styles = StyleSheet.create({
   },
 });
 
-const HomeScreen = () => {
-  return (
-    <View></View>
-  );
-}
 
-const App = () => {
+const App = ({children}) => {
   return (
-    <NavigationContainer>
-      <StatusBar hidden='true' />
+    <>
       <SafeAreaProvider style={styles.body}>
+      <StatusBar hidden='true' />
         <Header />
-        <Main />
+          <Main />
         <Footer />
       </SafeAreaProvider>
-    </NavigationContainer>
+    </>
   );
 };
 

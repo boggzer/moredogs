@@ -1,42 +1,82 @@
-import React from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
-import Section from './Section';
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Button, TouchableOpacity, Alert } from 'react-native';
+import Colors from '../constants/colors';
 import DogImage from './DogImage';
 
-const Main = () => {
-    return (
-        <View style={styles.container}>
-            <View style={styles.flexFill}>
-                <TouchableOpacity
-                    activeOpacity={.5}
-                    onPress={() => alert('click')}
-                    style={styles.flexFill}>
-                    <DogImage dogBreed={dogData.corgi}>
-                        <Text style={styles.dogImageText}>Corgi</Text>
-                    </DogImage>
-                </TouchableOpacity>
-            </View>
-            <View style={styles.flexFill}>
-                <TouchableOpacity
-                    activeOpacity={.5}
-                    onPress={() => alert('click')}
-                    style={styles.flexFill}>
-                    <DogImage dogBreed={dogData.pug}>
-                        <Text style={styles.dogImageText}>Pug</Text>
-                    </DogImage>
-                </TouchableOpacity>
-            </View>
+class Main extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            homeScreen: true,
+            dogBreed: undefined,
+        }
+        this.render(this.state);
+    }
 
-            {/* <View>
-                <Button color='black' title='Button' />
-            </View> */}
-        </View>
-    );
+    render() {
+        return (
+            this.renderContent()
+        )
+    }
+
+    renderContent() {
+        return (
+            <View style={styles.container}>
+                {this.state.homeScreen == true && this.renderMainContent()
+                    || this.state.homeScreen == false && this.renderPlayContent()}
+            </View>
+        )
+    }
+
+    renderMainContent() {
+        return (
+            <>
+                <View style={styles.flexFill}>
+                    <TouchableOpacity title='corgi' activeOpacity={.5} style={styles.flexFill}
+                        onPress={() =>
+                            this.setState({ homeScreen: false, dogBreed: dogData.corgi })
+                        }>
+                        <DogImage dogBreed={dogData.corgi} >
+                            <Text style={styles.dogImageText}>Corgi</Text>
+                        </DogImage>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.flexFill}>
+                    <TouchableOpacity activeOpacity={.5} style={styles.flexFill}
+                        onPress={() =>
+                            this.setState({ homeScreen: false, dogBreed: dogData.pug })
+                        }>
+                        <DogImage dogBreed={dogData.pug}>
+                            <Text style={styles.dogImageText}>Pug</Text>
+                        </DogImage>
+                    </TouchableOpacity>
+                </View>
+            </>
+        )
+    }
+
+    renderPlayContent() {
+        return (
+            <View style={styles.container}>
+                <View style={styles.flexFill} on>
+                    <DogImage dogBreed={ this.state.dogBreed } overlay={ false } />
+                </View>
+                <View color={Colors.RAISIN_BLACK} >
+                    <Button title='Another one, please!' onPress={() => this.setState({ dogBreed: this.state.dogBreed })} />
+                    <Button title='Go back' 
+                        onPress={() =>
+                        this.setState({ homeScreen: true })
+                    } />
+                </View>
+            </View>
+        );
+
+    }
 }
 
 const dogData = {
     corgi: 'corgi',
-    pug: 'pug',
+    pug: 'pug'
 }
 
 const styles = StyleSheet.create({
@@ -46,6 +86,13 @@ const styles = StyleSheet.create({
     },
     flexFill: {
         flex: 1,
+    },
+    flexRow: {
+        flexDirection: 'row',
+    },
+    buttonStyle: {
+        color: Colors.RAISIN_BLACK,
+        backgroundColor: Colors.ALABASTER,
     },
     dogImageText: {
         fontSize: 60,

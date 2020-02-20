@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
 import Colors from '../constants/colors';
 import DogImage from './DogImage';
 
@@ -56,21 +56,27 @@ class Main extends Component {
     }
 
     renderPlayContent() {
+        const DogImage = () => { return (<DogImage dogBreed={this.state.dogBreed} overlay={false} refresh={false}/>) }
+        DogImage.bind(this)
+
         return (
             <View style={styles.container}>
-                <View style={styles.flexFill} on>
-                    <DogImage dogBreed={ this.state.dogBreed } overlay={ false } />
+                <View style={styles.flexFill}>
+                    <DogImage dogBreed={this.state.dogBreed} overlay={false} refresh={false}/>
+                    <Text>{this}</Text>
                 </View>
-                <View color={Colors.RAISIN_BLACK} >
-                    <Button title='Another one, please!' onPress={() => this.setState({ dogBreed: this.state.dogBreed })} />
-                    <Button title='Go back' 
-                        onPress={() =>
-                        this.setState({ homeScreen: true })
-                    } />
+                <View style={styles.playButtons}>
+                    <View style={styles.button}>
+                        <Button color={Colors.MELON} title='another one, please!'
+                            onPress={() => this.setState({ imageLink: this.get})} />
+                    </View>
+                    <View style={styles.button} backgroundColor={ Colors.ALABASTER } >
+                        <Button color={Colors.SMOKY_TOPAZ} title='go back'
+                            onPress={() => this.setState({ homeScreen: true })} />
+                    </View>
                 </View>
             </View>
         );
-
     }
 }
 
@@ -82,6 +88,7 @@ const dogData = {
 const styles = StyleSheet.create({
     container: {
         flex: 5,
+        
         backgroundColor: 'rgb( 255, 188, 181 )',
     },
     flexFill: {
@@ -93,6 +100,7 @@ const styles = StyleSheet.create({
     buttonStyle: {
         color: Colors.RAISIN_BLACK,
         backgroundColor: Colors.ALABASTER,
+        width: '50%',
     },
     dogImageText: {
         fontSize: 60,
@@ -100,6 +108,25 @@ const styles = StyleSheet.create({
         textTransform: 'lowercase',
         color: 'rgb( 239, 233, 231 )',
         height: '50%',
+    },
+    playButtons: {
+        justifyContent: 'space-evenly',
+        alignContent: 'center',
+        marginTop: 7,
+        marginLeft: 7,
+        marginRight: 7,
+        height: 60,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        marginBottom: 60,
+    },
+    button: {
+        backgroundColor: Colors.SMOKY_TOPAZ,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+        width: '45%',
+        height: '100%',
     }
 });
 

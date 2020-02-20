@@ -8,13 +8,14 @@ class DogImage extends Component {
 
         this.state = {
             imageLink: this.getURI,
+            refresh: false,
         }
     }
 
     render() {
         return (
             <ImageBackground
-                source={ this.state.imageLink }
+                source={ this.state.imageLink ? this.state.imageLink : this.getURI }
                 style={styles.ImageBackground}>
                 <View style={[styles.container, this.props.overlay == false ? !styles.overlay : styles.overlay] }>
                     { this.props.children }

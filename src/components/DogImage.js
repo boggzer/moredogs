@@ -1,35 +1,50 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, ImageBackground } from 'react-native';
+import { View, ImageBackground, StyleSheet } from 'react-native';
 import Colors from '../constants/colors';
 
 class DogImage extends Component {
     constructor(props) {
         super(props);
 
+        this.controller = new AbortController();
+
         this.state = {
-            imageLink: this.getURI,
-            refresh: false,
+            imageURL: `https://dog.ceo/api/breed/${this.props.dogBreed}/images/random/`,
         }
     }
 
     render() {
         return (
-            <ImageBackground
-                source={ this.state.imageLink ? this.state.imageLink : this.getURI }
-                style={styles.ImageBackground}>
-                <View style={[styles.container, this.props.overlay == false ? !styles.overlay : styles.overlay] }>
-                    { this.props.children }
-                </View>
-            </ImageBackground>
+            <View style={{ flex: 1 }}>
+                <ImageBackground
+                    info={this.getDogImage}
+                    source={ this.props.overlay == true ? this.props.source : { uri: this.state.imageURL } }
+                    style={styles.ImageBackground}>
+                    <View style={[styles.container, this.props.overlay == false ? !styles.overlay : styles.overlay]}>
+                        {this.props.children}
+                    </View>
+                </ImageBackground>
+            </View>
         )
     }
 
-    get getURI() {
-        return (
-            { uri: 'https://source.unsplash.com/random/?' + JSON.stringify(this.props.dogBreed) }
-            
-        )
+    componentDidMount() {
+        this.fetchData();
     }
+
+    fetchData = async () => {
+        const response = await fetch(
+            `https://dog.ceo/api/breed/${this.props.dogBreed}/images/random`,
+            { signal: this.controller.signal });
+        const json = await response.json();
+        this.setState({
+            imageURL: json.message,
+        })
+    }
+
+    componentWillUnmount(){
+        this.controller.abort();
+      }
 }
 
 const styles = StyleSheet.create({

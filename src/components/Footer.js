@@ -40,10 +40,10 @@ class Footer extends Component {
         return (
             <View style={{ justifyContent: 'space-between', alignItems: 'center' }}>
                 <Text style={styles.headingStyle}>boggzer @ github</Text>
-                <Text style={styles.headingStyle}>icons by Those Icons @ flaticon</Text>
+                <Text style={styles.headingStyle}>icons by Those Icons and Vitaly Gorbachev @ flaticon</Text>
                 <TouchableOpacity activeOpacity={.5} style={styles.flexFill}
                     onPress={() => this.setState({ isClicked: false })}>
-                    <Image style={styles.icon} source={require('../../assets/images/close.png')} onPress={() => alert('cc')} />
+                    <Image style={styles.icon} source={require('../../assets/images/close.png')} />
                 </TouchableOpacity>
             </View>
         )
@@ -67,13 +67,13 @@ const styles = StyleSheet.create({
         color: Colors.SMOKY_TOPAZ,
         fontFamily: 'Avenir-Black',
         textTransform: 'lowercase',
+        lineHeight: 19,
     },
     textStyle: {
         fontFamily: 'Avenir',
     },
     clicked: {
         position: 'absolute',
-        
         backgroundColor: Colors.RAISIN_BLACK,
         alignItems: 'center',
         height: 130,

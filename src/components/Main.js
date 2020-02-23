@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import Colors from '../constants/colors';
 import DogImage from './DogImage';
 import PlayContent from './PlayContent';
 
 class Main extends Component {
     constructor() {
         super();
-
         this.state = {
             homeScreen: true,
             dogBreed: undefined,

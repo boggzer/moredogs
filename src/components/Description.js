@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 const Description = () => {
     return (
         <Text style={styles.textStyle}>
-            A randomized dog image generator.
+            A random dog image generator.
         </Text>
     );
 }

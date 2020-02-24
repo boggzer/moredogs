@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 
 const Description = () => {
     return (
@@ -12,6 +12,7 @@ const Description = () => {
 const styles = StyleSheet.create({
     textStyle: {
         fontStyle: 'italic',
+        marginBottom: 20,
     }
 })
 

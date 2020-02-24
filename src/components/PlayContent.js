@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, StyleSheet, Button, TouchableHighlight } from 'react-native';
 import Colors from '../constants/colors';
 import DogImage from './DogImage';
 
@@ -54,13 +54,13 @@ const styles = StyleSheet.create({
     playButtons: {
         justifyContent: 'space-evenly',
         alignContent: 'center',
-        marginTop: 7,
+        marginTop: 12,
         marginLeft: 7,
         marginRight: 7,
         height: 60,
         flexDirection: 'row',
         flexWrap: 'wrap',
-        marginBottom: 60,
+        marginBottom: 12,
     },
     button: {
         backgroundColor: Colors.SMOKY_TOPAZ,

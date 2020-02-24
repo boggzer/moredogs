@@ -16,17 +16,18 @@ const styles = StyleSheet.create({
   },
 });
 
-
-const App = ({children}) => {
+/** 
+ * This renders the whole app.
+ * @returns {SafeAreaProvider} Component containing the app.
+ */
+const App = () => {
   return (
-    <>
-      <SafeAreaProvider style={styles.body}>
+    <SafeAreaProvider style={styles.body}>
       <StatusBar hidden='true' />
         <Header />
           <Main />
         <Footer />
       </SafeAreaProvider>
-    </>
   );
 };
 

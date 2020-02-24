@@ -1,50 +1,68 @@
 import React, { Component } from 'react';
+import SlidingUpPanel from 'rn-sliding-up-panel';
 import {
     View,
     Text,
     StyleSheet,
     TouchableOpacity,
     Image,
+    SafeAreaView
 } from 'react-native';
 import Colors from '../constants/colors';
 
+/** Footer component */
 class Footer extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             isClicked: false,
         }
     }
 
+    /** 
+     * Renders Footer component.
+     * When unclicked, renders just a tab with 'about' text.
+     * When clicked (touched), slides up a panel containing text.
+     * @returns {SafeAreaView} Safe View component to fit iPhone X >.
+    */
     render() {
         return (
-            <View style={[this.state.isClicked == false ? styles.notClicked : styles.clicked]}>
-                    <TouchableOpacity activeOpacity={.5} style={styles.flexFill}
-                        onPress={() => {
-                            this.setState({
-                                isClicked: true
-                            })
-                        }}>
-                        <Text style={[styles.headingStyle,
-                        this.state.isClicked == true ? styles.clickedText : !styles.clickedText]}>
-                            About
+            <SafeAreaView style={{backgroundColor: Colors.ALABASTER}}>
+                <TouchableOpacity activeOpacity={.5}
+                    onPress={() => {
+                        this._panel.show(150);
+                        this.setState({
+                            isClicked: true
+                        })
+                    }}>
+                    <Text style={[styles.headingStyle, styles.notClicked]}>
+                        About
                     </Text>
+                </TouchableOpacity>
+                <SlidingUpPanel ref={c => this._panel = c}>
+                    <TouchableOpacity activeOpacity={.5} style={styles.clicked}
+                        onPress={() => {
+                            this._panel.hide()
+                            this.setState({ isClicked: false })
+                        }}>
+                        {this.footerInfo}
                     </TouchableOpacity>
-                {this.state.isClicked == false ? null : this.footerInfo}
-            </View>
+                </SlidingUpPanel>
+            </SafeAreaView>
         )
     }
 
+    /**
+     * Returns UI component containing text that shows up when 'about' tab is clicked.
+     * @returns {View} View component with 'about' text content.
+     */
     get footerInfo() {
         return (
-            <View style={{ justifyContent: 'space-between', alignItems: 'center' }}>
+            <View style={{ justifyContent: 'space-between', alignItems: 'center' }} ref={c => this._panel = c}>
+                <Text style={styles.headingStyle}>about</Text>
                 <Text style={styles.headingStyle}>boggzer @ github</Text>
                 <Text style={styles.headingStyle}>icons by Those Icons and Vitaly Gorbachev @ flaticon</Text>
-                <TouchableOpacity activeOpacity={.5} style={styles.flexFill}
-                    onPress={() => this.setState({ isClicked: false })}>
-                    <Image style={styles.icon} source={require('../../assets/images/close.png')} />
-                </TouchableOpacity>
+                <Image style={styles.icon} source={require('../../assets/images/close.png')} />
             </View>
         )
     }
@@ -53,35 +71,31 @@ class Footer extends Component {
 
 const styles = StyleSheet.create({
     notClicked: {
-        position: 'absolute',
         bottom: 0,
         width: '100%',
-        height: 50,
-        justifyContent: 'space-evenly',
+        height: 30,
+        padding: 10,
         alignItems: 'center',
-        backgroundColor: Colors.MELON,
+        justifyContent: 'center',
+        backgroundColor: Colors.ALABASTER,
+        zIndex: 1,
     },
     headingStyle: {
-        fontSize: 17,
+        fontSize: 18,
         textAlign: 'center',
         color: Colors.SMOKY_TOPAZ,
         fontFamily: 'Avenir-Black',
         textTransform: 'lowercase',
         lineHeight: 19,
     },
-    textStyle: {
-        fontFamily: 'Avenir',
-    },
     clicked: {
-        position: 'absolute',
         backgroundColor: Colors.RAISIN_BLACK,
         alignItems: 'center',
-        height: 130,
+        height: 170,
+        padding: 10,
         width: '100%',
         bottom: 0,
-    },
-    clickedText: {
-        marginTop: 15,
+        zIndex: 3,
     },
     icon: {
         width: 20,

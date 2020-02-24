@@ -1,20 +1,24 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
 import Title from './Title';
 import Description from './Description';
 
-const Header = (props) => {
+/** 
+ * Render Header with Title and Description.
+ * SafeAreaView is used to fit iPhone X and up.
+*/
+const Header = () => {
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <Title />
             <Description />
-        </View>
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        height: 100,
+        height: 120,
         justifyContent: 'space-evenly',
         alignItems: 'center',
         backgroundColor: '#FFBCB5',

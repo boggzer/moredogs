@@ -1,5 +1,6 @@
 # more dogs please!
-The assignment was to choose a framework, write a report on it and create a POC (Proof of Concept). This is the outcome: an app for iOS and Android that generates random dog images with the [Dog API](https://dog.ceo/dog-api/). The user decides between 'corgi' and 'pug' images and is able to repeatedly generate new images by pressing on the 'another one, please!' button. The user can always go back and switch breed.
+The assignment was to select a framework, write a report on it and create a POC (Proof of Concept). This is the outcome: an app for iOS and Android that generates random dog images with the [Dog API](https://dog.ceo/dog-api/). The user decides between 'corgi' and 'pug' images and is able to repeatedly generate new images by pressing on the 'another one, please!' button. The user can always go back and switch breed on the 'go back' button. On the bottom is the 'About' tab that, when clicked on, shows the developer's account name on GitHub as well as credits to the creator of icons used within the app.
+
 Made with React Native.
 
 ### Setup
@@ -9,7 +10,7 @@ Made with React Native.
 
 ### Run app
 1. cd to cloned repo
-2. run app for either OS (Xcode or Android Studio emulator or device):
+2. run app for either OS (Xcode or Android Studio emulator *or* physical device required):
   * iOS
     * ```npx react-native run-ios```
   * Android

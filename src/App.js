@@ -9,13 +9,6 @@ import Main from './components/Main'
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-const styles = StyleSheet.create({
-  body: {
-    backgroundColor: 'rgb( 255, 188, 181 )',
-    flex: 1,
-  },
-});
-
 /** 
  * This renders the whole app.
  * @returns {SafeAreaProvider} Component containing the app.
@@ -30,5 +23,13 @@ const App = () => {
       </SafeAreaProvider>
   );
 };
+
+
+const styles = StyleSheet.create({
+  body: {
+    backgroundColor: 'rgb( 255, 188, 181 )',
+    flex: 1,
+  },
+});
 
 export default App;

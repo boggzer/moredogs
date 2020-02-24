@@ -25,7 +25,8 @@ class DogImage extends Component {
             <View style={{ flex: 1 }}>
                 <ImageBackground
                     source={
-                        this.props.overlay == true ? this.props.source : { uri: this.state.imageURL } }
+                        this.props.overlay == true ? 
+                        this.props.source : { uri: this.state.imageURL } }
                     style={styles.ImageBackground}>
                     <View style={[
                             styles.container, 

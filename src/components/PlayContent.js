@@ -42,12 +42,6 @@ class PlayContent extends Component {
             </>
         )
     }
-
-    getURI() {
-        return(
-            { uri: 'https://source.unsplash.com/random/?' + JSON.stringify(this.props.dogBreed) + '=' + this.props.newImageCount }
-        )
-    }
 }
 
 const styles = StyleSheet.create({

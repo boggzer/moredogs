@@ -1,6 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 
+/**
+ * Title component
+ * @returns {Text} Text component with page title text
+ */
 const Title = () => {
     return (
         <Text style={styles.textStyle}>More dogs please!</Text>

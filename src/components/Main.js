@@ -44,8 +44,7 @@ class Main extends Component {
                         <PlayContent 
                             parentCallback={this.callBackFunction} 
                             dogBreed={this.state.dogBreed} 
-                            overlay={false} 
-                        />
+                            overlay={false}/>
                 }
             </View>
         )
@@ -100,14 +99,10 @@ const dogIcons = {
 const styles = StyleSheet.create({
     container: {
         flex: 5,
-
         backgroundColor: 'rgb( 255, 188, 181 )',
     },
     flexFill: {
         flex: 1,
-    },
-    flexRow: {
-        flexDirection: 'row',
     },
     dogImageText: {
         fontSize: 60,
